@@ -1,6 +1,6 @@
 {
-    "name": "jamesryanbell/cloudflare",
-    "description": "CloudFlare API - PHP",
+    "name": "shadowlmd/cloudflare",
+    "description": "CloudFlare API - PHP (forked from jamesryanbell/cloudflare)",
     "license": "MIT",
     "keywords": ["cloudflare", "api"],
     "authors": [
