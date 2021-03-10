@@ -238,7 +238,11 @@ class Api
                 $response->success = false;
                 $error_obj = new \stdClass();
                 $error_obj->code = 0;
-                $error_obj->message = $response->error;
+                if (!empty($response->error)) {
+                    $error_obj->message = $response->error;
+                } else {
+                    $error_obj->message = 'You do not have permission to perform this request';
+                }
                 $response->errors[] = $error_obj;
             }
         }
