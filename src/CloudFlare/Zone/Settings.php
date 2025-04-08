@@ -413,6 +413,21 @@ class Settings extends Api
     }
 
     /**
+     * Get TLS 1.3 setting (permission needed: #zone_settings:read)
+     * TLS 1.3 is the newest, fastest, and most secure version of the TLS protocol.
+     * SSL/TLS is the protocol that encrypts communication between users and your website.
+     * When web traffic is encrypted with TLS, users will see the green padlock in their browser window.
+     * By turning on the TLS 1.3 feature, traffic to and from your website will be served over the TLS 1.3 protocol when supported by clients.
+     * (https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/)
+     *
+     * @param string $zone_identifier API item identifier tag
+     */
+    public function tls_13($zone_identifier)
+    {
+        return $this->get('zones/'.$zone_identifier.'/settings/tls_1_3');
+    }
+
+    /**
      * Change Automatic HTTPS Rewrites setting (permission needed: #zone_settings:edit)
      * Enable the Automatic HTTPS Rewrites feature for this zone.
      *
@@ -891,5 +906,25 @@ class Settings extends Api
         ];
 
         return $this->patch('zones/'.$zone_identifier.'/settings/waf', $data);
+    }
+
+    /**
+     * Change TLS 1.3 setting (permission needed: #zone_settings:edit)
+     * TLS 1.3 is the newest, fastest, and most secure version of the TLS protocol.
+     * SSL/TLS is the protocol that encrypts communication between users and your website.
+     * When web traffic is encrypted with TLS, users will see the green padlock in their browser window.
+     * By turning on the TLS 1.3 feature, traffic to and from your website will be served over the TLS 1.3 protocol when supported by clients.
+     * (https://developers.cloudflare.com/ssl/edge-certificates/additional-options/tls-13/)
+     *
+     * @param string      $zone_identifier API item identifier tag
+     * @param string|null $value           Value of the zone setting (default: on)
+     */
+    public function change_tls_13($zone_identifier, $value = null)
+    {
+        $data = [
+            'value' => $value,
+        ];
+
+        return $this->patch('zones/'.$zone_identifier.'/settings/tls_1_3', $data);
     }
 }
